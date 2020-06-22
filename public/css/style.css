@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 5px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+header {
+    background-color: grey;
+    padding: 5px;
+}
+
+footer {
+    background-color: skyblue;
+}
+
+a {
+    color: black;
+}
