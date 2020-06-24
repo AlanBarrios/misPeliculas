@@ -3,10 +3,20 @@
     <%- include("partials/head") %>
 
     <body>
-        <header>
-            <h1>Detalle de pelicula <%= peliculaId %>!!</h1>
-        </header>
-        <main></main>
+        <%- include("partials/header") %>
+        <main>
+            <h2><%= movie.title %></h2>
+            <ul>
+                <li>Premios: <%= movie.awards %></li>
+                <li>Recaudacion: <%= movie.revenue %></li>
+                <li>Fecha de estreno: <%= movie.release_date %></li>
+                <li>Duracion: <%= movie.length %></li>
+                <li>Genero: <%= movie.genre.name %></li>
+            </ul>
+            <div>
+                <a href="/movies">Volver a Listado de peliculas</a>
+            </div>
+        </main>
         <%- include("partials/footer") %>
     </body>
 </html>

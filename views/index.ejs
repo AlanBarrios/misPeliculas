@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+    <%- include("partials/head") %>
+    <body>
+        <%- include("partials/header") %>
+        <main>
+            <div class="container-xl mx-auto p-0 m-0 row">
+                <div class="col-6 p-0 m-0">
+                    <img
+                        class="image-1"
+                        src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/avatar-taquilla-1564042180.jpg?crop=1xw:1xh;center,top&resize=480:*"
+                        alt="Avatar Image"
+                    />
+                </div>
+                <div class="col-6 p-0 m-0">
+                    <img
+                        class="image-2"
+                        src="https://es.web.img3.acsta.net/pictures/19/07/09/11/22/4517830.jpg"
+                        alt="Rey Leon Image"
+                    />
+                </div>
+            </div>
+        </main>
+        <%- include("partials/footer") %>
+    </body>
 </html>

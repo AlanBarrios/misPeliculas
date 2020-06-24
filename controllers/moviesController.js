@@ -1,10 +1,23 @@
+const { Movie, Actor, Genre } = require("../database/models");
+
 const controller = {
-    showMovies: (req, res) => {
-        res.render("movies");
+    showMovies: async (req, res) => {
+        try {
+            let movies = await Movie.findAll();
+            res.render("movies", { movies });
+        } catch (error) {
+            res.send(error);
+        }
     },
-    showDetail: (req, res) => {
-        var peliculaId = req.params.id;
-        res.render("movieDetail", { peliculaId });
+    showDetail: async (req, res) => {
+        try {
+            let movie = await Movie.findByPk(req.params.id, {
+                include: ["genre", "actors"],
+            });
+            res.render("movieDetail", { movie });
+        } catch (error) {
+            res.send(error);
+        }
     },
     showCreateMovie: (req, res) => {
         res.render("movieCreate");
