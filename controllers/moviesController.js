@@ -19,21 +19,73 @@ const controller = {
             res.send(error);
         }
     },
-    showCreateMovie: (req, res) => {
-        res.render("movieCreate");
+    showCreateMovie: async (req, res) => {
+        try {
+            let genre = await Genre.findAll();
+            res.render("movieCreate", { genre });
+        } catch (error) {
+            res.send(error);
+        }
     },
-    createMovie: (req, res) => {
-        res.redirect("/movies");
+    createMovie: async (req, res) => {
+        try {
+            Movie.create({
+                title: req.body.title,
+                awards: req.body.awards,
+                revenue: req.body.revenue,
+                release_date: req.body.release_date,
+                length: req.body.length,
+                genre_id: req.body.genre_id,
+            });
+            res.redirect("/movies");
+        } catch (error) {
+            res.send(error);
+        }
     },
-    showEditMovie: (req, res) => {
-        var peliculaId = req.params.id;
-        res.render("movieEdit", { peliculaId });
+    showEditMovie: async (req, res) => {
+        try {
+            let movie = await Movie.findByPk(req.params.id, {
+                include: ["genre", "actors"],
+            });
+            let genre = await Genre.findAll();
+            res.render("movieEdit", { movie, genre });
+        } catch (error) {
+            res.send(error);
+        }
     },
-    editMovie: (req, res) => {
-        res.redirect("/movies");
+    editMovie: async (req, res) => {
+        try {
+            Movie.update(
+                {
+                    title: req.body.title,
+                    awards: req.body.awards,
+                    revenue: req.body.revenue,
+                    release_date: req.body.release_date,
+                    length: req.body.length,
+                    genre_id: req.body.genre_id,
+                },
+                {
+                    where: {
+                        id: req.params.id,
+                    },
+                }
+            );
+            res.redirect("/movies/detail/" + req.params.id);
+        } catch (error) {
+            res.send(error);
+        }
     },
-    deleteMovie: (req, res) => {
-        res.redirect("/movies");
+    deleteMovie: async (req, res) => {
+        try {
+            Movie.destroy({
+                where: {
+                    id: req.params.id,
+                },
+            });
+            res.redirect("/movies");
+        } catch (error) {
+            res.send(error);
+        }
     },
 };
 
