@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include("partials/head") %>
+
     <body>
         <%- include("partials/header") %>
         <main>
             <div class="container-xl mx-auto p-0 m-0 row">
                 <div class="col-12 d-flex justify-content-center mt-2">
-                    <h3 class="mx-auto mt-2 unline">Listado de peliculas</h3>
+                    <h3 class="mx-auto mt-2 unline">
+                        Actor:
+                    </h3>
+                </div>
+                <div class="col-12 d-flex justify-content-center mt-2">
+                    <h4 class="mx-auto mt-2">
+                        <%= actor.first_name %> <%= actor.last_name %>
+                    </h4>
                 </div>
                 <div class="col-12 mb-2">
+                    <div class="col-12 mt-3">
+                        <h5>Peliculas en las que participo:</h5>
+                    </div>
                     <ul>
-                        <% for (let i = 0; i < movies.length; i++) { %>
+                        <% for (let i = 0; i < actor.movies.length; i++) { %>
 
                         <li class="mt-3 movies-title">
-                            <%= movies[i].title %>
+                            <%= actor.movies[i].title %>
                         </li>
                         <a
-                            href="/movies/detail/<%= movies[i].id %> "
+                            href="/movies/detail/<%= actor.movies[i].id %> "
                             class="movies-a"
                             >Ver mas</a
                         >

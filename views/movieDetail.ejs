@@ -7,7 +7,7 @@
         <main>
             <div class="container-xl mx-auto p-0 m-0 row">
                 <div class="col-12 d-flex justify-content-center mt-2">
-                    <h3><%= movie.title %></h3>
+                    <h3 class="mx-auto mt-2 unline"><%= movie.title %></h3>
                 </div>
 
                 <div class="col-12">
@@ -17,21 +17,32 @@
                             Recaudacion: <%= movie.revenue %>
                         </li>
                         <li class="mt-3">
-                            Fecha de estreno: <%= movie.release_date %>
+                            Fecha de estreno: <%=
+                            moment(movie.release_date).format("YYYY-MM-DD") %>
                         </li>
                         <li class="mt-3">Duracion: <%= movie.length %></li>
                         <li class="mt-3">
                             Genero: <%= movie.genre.name %>
                         </li>
+                        <a
+                            href="/movies/genre/<%= movie.genre_id %> "
+                            class="movies-a"
+                            >Ver mas</a
+                        >
                         <li class="mt-3">
                             Actores:
                             <ul>
                                 <% for (let i = 0; i < movie.actors.length;
                                 i++){%>
                                 <li class="mt-2">
-                                    <%=movie.actors[i].first_name
-                                    %><%=movie.actors[i].last_name%>
+                                    <%=movie.actors[i].first_name %>
+                                    <%=movie.actors[i].last_name%>
                                 </li>
+                                <a
+                                    href="/movies/actor/<%= movie.actors[i].id %> "
+                                    class="movies-a"
+                                    >Ver mas</a
+                                >
                                 <%}%>
                             </ul>
                         </li>
@@ -41,7 +52,7 @@
                     <div class="col-6 text-center">
                         <a
                             href="/movies/edit/<%= movie.id %>"
-                            class="btn btn-warning"
+                            class="btn btn-warning button-wd"
                         >
                             Editar
                         </a>
@@ -51,16 +62,17 @@
                             action="/movies/delete/<%= movie.id %>?_method=delete"
                             method="POST"
                         >
-                            <button type="submit" class="btn btn-danger">
+                            <button
+                                type="submit"
+                                class="btn btn-danger button-wd"
+                            >
                                 Eliminar
                             </button>
                         </form>
                     </div>
                 </div>
-                <div class="col-12 d-flex justify-content-center mt-4">
-                    <a href="/movies" class="movies-a"
-                        >Volver a Listado de peliculas</a
-                    >
+                <div class="col-12 d-flex justify-content-center mt-5 mb-2">
+                    <a href="/movies" class="movies-a m">Volver</a>
                 </div>
             </div>
         </main>

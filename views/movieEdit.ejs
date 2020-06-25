@@ -7,12 +7,22 @@
         <main>
             <div class="container-xl mx-auto p-0 m-0 row">
                 <div class="col-12 d-flex justify-content-center mt-2">
-                    <h3 class="mx-auto mt-2">Editar pelicula:</h3>
+                    <h3 class="mx-auto mt-2 unline">Editar pelicula:</h3>
                 </div>
                 <div class="col-12 d-flex justify-content-center mt-2">
-                    <h3 class="mx-auto mt-2"><%= movie.title %></h3>
+                    <h4 class="mx-auto mt-2"><%= movie.title %></h4>
                 </div>
                 <div class="col-12">
+                    <div class="col-12 mt-2">
+                        <% if (typeof errors != "undefined"){ %>
+                        <div class="col-12" style="color: red;">ERROR!!</div>
+                        <ul>
+                            <% for (let i = 0; i < errors.length; i++){ %>
+                            <li class="col-12 mt-2"><%= errors[i].msg %></li>
+                            <% } %>
+                        </ul>
+                        <% } %>
+                    </div>
                     <form
                         action="/movies/edit/<%= movie.id %>?_method=put "
                         method="POST"
@@ -29,6 +39,7 @@
                                     id="title"
                                     class="form-control"
                                     value="<%= movie.title %>"
+                                    required
                                 />
                             </div>
                         </div>
@@ -43,6 +54,7 @@
                                     id="awards"
                                     class="form-control"
                                     value="<%= movie.awards %>"
+                                    required
                                 />
                             </div>
                         </div>
@@ -70,7 +82,8 @@
                                     name="release_date"
                                     id="release_date"
                                     class="form-control"
-                                    value="<%= movie.release_date %>"
+                                    value="<%= moment(movie.release_date).format("YYYY-MM-DD")%>"
+                                    required
                                 />
                             </div>
                         </div>
@@ -85,6 +98,7 @@
                                     id="length"
                                     class="form-control"
                                     value="<%= movie.length %>"
+                                    required
                                 />
                             </div>
                         </div>
@@ -108,7 +122,7 @@
                             </div>
                         </div>
                         <div class="col-12 mb-2">
-                            <button class="btn btn-warning" type="submit">
+                            <button class="btn btn-warning button-wd" type="submit">
                                 Editar
                             </button>
                         </div>

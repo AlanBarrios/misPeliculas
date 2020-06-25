@@ -7,9 +7,19 @@
         <main>
             <div class="container-xl mx-auto p-0 m-0 row">
                 <div class="col-12 d-flex justify-content-center mt-2">
-                    <h3 class="mx-auto mt-2">Crear pelicula</h3>
+                    <h3 class="mx-auto mt-2 unline">Crear pelicula</h3>
                 </div>
                 <div class="col-12">
+                    <div class="col-12 mt-2">
+                        <% if (typeof errors != "undefined"){ %>
+                        <div class="col-12" style="color: red;">ERROR!!</div>
+                        <ul>
+                            <% for (let i = 0; i < errors.length; i++){ %>
+                            <li class="col-12 mt-2"><%= errors[i].msg %></li>
+                            <% } %>
+                        </ul>
+                        <% } %>
+                    </div>
                     <form action="/movies/create" method="POST" class="col-12">
                         <div class="form-group col-12">
                             <label for="title" class="col-form-label"
@@ -21,6 +31,7 @@
                                     name="title"
                                     id="title"
                                     class="form-control"
+                                    required
                                 />
                             </div>
                         </div>
@@ -34,6 +45,7 @@
                                     name="awards"
                                     id="awards"
                                     class="form-control"
+                                    required
                                 />
                             </div>
                         </div>
@@ -60,6 +72,7 @@
                                     name="release_date"
                                     id="release_date"
                                     class="form-control"
+                                    required
                                 />
                             </div>
                         </div>
@@ -73,6 +86,7 @@
                                     name="length"
                                     id="length"
                                     class="form-control"
+                                    required
                                 />
                             </div>
                         </div>
@@ -97,7 +111,10 @@
                             </div>
                         </div>
                         <div class="col-12 mb-2">
-                            <button class="btn btn-success" type="submit">
+                            <button
+                                class="btn btn-success button-wd"
+                                type="submit"
+                            >
                                 Crear
                             </button>
                         </div>

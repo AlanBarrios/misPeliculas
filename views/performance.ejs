@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("partials/head") %>
+
+    <body>
+        <%- include("partials/header") %>
+        <main>
+            <div class="container-xl mx-auto p-0 m-0 row">
+                <div class="col-12 d-flex justify-content-center mt-2">
+                    <h3 class="mx-auto mt-2 unline">
+                        Crear nueva actuacion:
+                    </h3>
+                </div>
+
+                <div class="col-6 d-flex justify-content-center mt-2">
+                    <h5>Elegir Actor</h5>
+                </div>
+                <div class="col-6 d-flex justify-content-center mt-2">
+                    <h5>Elegir Pelicula</h5>
+                </div>
+                <div class="col-12 d-flex justify-content-center mt-2 p-0">
+                    <form
+                        action="/movies/performance"
+                        class="col-12 d-flex p-0 row"
+                        method="POST"
+                    >
+                        <div class="col-6 d-flex justify-content-start p-0">
+                            <ul class="p-0">
+                                <% for (let i = 0; i < actors.length; i++) {%>
+                                <label
+                                    for="actor_id"
+                                    class="col-10 mt-3 movies-title"
+                                >
+                                    <%= actors[i].first_name %> <%=
+                                    actors[i].last_name %>
+                                </label>
+                                <input
+                                    type="checkbox"
+                                    name="actor_id"
+                                    id="actor_id"
+                                    value="<%= actors[i].id %> "
+                                />
+                                <% } %>
+                            </ul>
+                        </div>
+                        <div class="col-6 d-flex justify-content-start p-0">
+                            <ul class="p-0">
+                                <% for (let i = 0; i < movies.length; i++) { %>
+                                <label
+                                    for="movie_id"
+                                    class="col-10 mt-3 movies-title"
+                                >
+                                    <%= movies[i].title %>
+                                </label>
+                                <input
+                                    type="checkbox"
+                                    name="movie_id"
+                                    id="movie_id"
+                                    value="<%= movies[i].id %> "
+                                />
+                                <%}%>
+                            </ul>
+                        </div>
+                        <div class="col-12 mb-2">
+                            <button
+                                class="btn btn-success button-wd"
+                                type="submit"
+                            >
+                                Crear
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <%- include("partials/footer") %>
+    </body>
+</html>

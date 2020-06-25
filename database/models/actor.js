@@ -21,13 +21,17 @@ module.exports = (sequelize, dataTypes) => {
             through: "actor_episode",
             foreignKey: "actor_id",
             otherKey: "episode_id",
-        }),
-            Actor.belongsToMany(models.Movie, {
-                as: "movies",
-                through: "actor_movie",
-                foreignKey: "actor_id",
-                otherKey: "movie_id",
-            });
+        });
+        Actor.belongsToMany(models.Movie, {
+            as: "movies",
+            through: "actor_movie",
+            foreignKey: "actor_id",
+            otherKey: "movie_id",
+        });
+        Actor.belongsTo(models.Movie, {
+            as: "favorite",
+            foreignKey: "favorite_movie_id",
+        });
     };
 
     return Actor;
