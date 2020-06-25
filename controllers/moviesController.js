@@ -97,6 +97,11 @@ const controller = {
     },
     deleteMovie: async (req, res) => {
         try {
+            Actor.destroy({
+                where: {
+                    favorite_movie_id: req.params.id,
+                },
+            });
             Actor_movie.destroy({
                 where: {
                     movie_id: req.params.id,
@@ -150,6 +155,19 @@ const controller = {
             });
 
             res.redirect("/movies/detail/" + req.body.movie_id);
+        } catch (error) {
+            res.send(error);
+        }
+    },
+    deletePerformance: async (req, res) => {
+        try {
+            Actor_movie.destroy({
+                where: {
+                    actor_id: req.params.aid,
+                    movie_id: req.params.mid,
+                },
+            });
+            res.redirect("/movies/actor/" + req.params.aid);
         } catch (error) {
             res.send(error);
         }

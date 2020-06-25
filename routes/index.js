@@ -58,5 +58,9 @@ router.get("/movies/actor/:id", moviesController.showActor);
 /* Performance */
 router.get("/movies/performance", moviesController.showPerformance);
 router.post("/movies/performance", moviesController.createPerformance);
+router.delete(
+    "/movies/performance/:mid/:aid",
+    moviesController.deletePerformance
+);
 
 module.exports = router;
