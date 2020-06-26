@@ -32,7 +32,7 @@ const controller = {
         const errors = validationResult(req);
         if (errors.isEmpty()) {
             try {
-                Movie.create({
+                await Movie.create({
                     title: req.body.title,
                     awards: req.body.awards,
                     revenue: req.body.revenue,
@@ -64,7 +64,7 @@ const controller = {
         const errors = validationResult(req);
         if (errors.isEmpty()) {
             try {
-                Movie.update(
+                await Movie.update(
                     {
                         title: req.body.title,
                         awards: req.body.awards,
@@ -97,17 +97,22 @@ const controller = {
     },
     deleteMovie: async (req, res) => {
         try {
-            Actor.destroy({
-                where: {
-                    favorite_movie_id: req.params.id,
+            await Actor.update(
+                {
+                    favorite_movie_id: null,
                 },
-            });
-            Actor_movie.destroy({
+                {
+                    where: {
+                        favorite_movie_id: req.params.id,
+                    },
+                }
+            );
+            await Actor_movie.destroy({
                 where: {
                     movie_id: req.params.id,
                 },
             });
-            Movie.destroy({
+            await Movie.destroy({
                 where: {
                     id: req.params.id,
                 },
