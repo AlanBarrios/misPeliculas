@@ -154,7 +154,7 @@ const controller = {
     },
     createPerformance: async (req, res) => {
         try {
-            Actor_movie.create({
+            await Actor_movie.create({
                 actor_id: req.body.actor_id,
                 movie_id: req.body.movie_id,
             });
@@ -166,7 +166,7 @@ const controller = {
     },
     deletePerformance: async (req, res) => {
         try {
-            Actor_movie.destroy({
+            await Actor_movie.destroy({
                 where: {
                     actor_id: req.params.aid,
                     movie_id: req.params.mid,
